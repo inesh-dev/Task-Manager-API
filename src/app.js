@@ -1,6 +1,7 @@
 const express = require('express');
 
 const taskRoutes = require('./routes/taskRoutes');
+const { notFoundHandler, errorHandler } = require('./middleware/errorHandler');
 
 const app = express();
 
@@ -12,4 +13,10 @@ app.get('/', (req, res) => {
 
 app.use('/api/tasks', taskRoutes);
 
-module.exports = app
+
+app.use(notFoundHandler);
+
+
+app.use(errorHandler);
+
+module.exports = app;
