@@ -1,0 +1,16 @@
+{
+  "name": "team-task-manager-api",
+  "version": "1.0.0",
+  "description": "A simple REST API for managing team tasks (university lab assessment project)",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node src/server.js"
+  },
+  "keywords": ["task-manager", "rest-api", "express", "nodejs"],
+  "author": "Inesh, Saksham, Inesh",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
