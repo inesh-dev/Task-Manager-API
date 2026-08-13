@@ -7,10 +7,16 @@
     "start": "node src/server.js",
     "dev": "node src/server.js"
   },
-  "keywords": ["task-manager", "rest-api", "express", "nodejs"],
+  "keywords": [
+    "task-manager",
+    "rest-api",
+    "express",
+    "nodejs"
+  ],
   "author": "Inesh, Saksham, Inesh",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "uuid": "^14.0.1"
   }
 }
