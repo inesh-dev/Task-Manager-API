@@ -39,7 +39,7 @@ function deleteTask(req, res, next) {
     return next(new AppError(`Task with id ${req.params.id} not found`, 404));
   }
 
-  res.status(200).send();
+  res.status(204).send();
 }
 
 module.exports = {
