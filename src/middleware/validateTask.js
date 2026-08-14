@@ -8,13 +8,6 @@ function validateTaskInput(req, res, next) {
         message: 'Title is required and must be a non-empty string',
       });
     }
-    // Bug: completed type is only checked for POST here — PUT has no check yet.
-    if (completed !== undefined && typeof completed !== 'boolean') {
-      return res.status(400).json({
-        error: 'Validation Error',
-        message: 'completed must be a boolean value',
-      });
-    }
   }
 
   if (req.method === 'PUT') {
@@ -24,6 +17,13 @@ function validateTaskInput(req, res, next) {
         message: 'Title must be a non-empty string when provided',
       });
     }
+  }
+
+  if (completed !== undefined && typeof completed !== 'boolean') {
+    return res.status(400).json({
+      error: 'Validation Error',
+      message: 'completed must be a boolean value',
+    });
   }
 
   next();
