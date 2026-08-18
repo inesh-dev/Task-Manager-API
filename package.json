@@ -5,22 +5,19 @@
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",
-    "dev": "node src/server.js"
+    "dev": "node src/server.js",
+    "test": "jest --coverage",
+    "test:watch": "jest --watch"
   },
-  "keywords": [
-    "task-manager",
-    "rest-api",
-    "express",
-    "nodejs"
-  ],
+  "keywords": ["task-manager", "rest-api", "express", "nodejs"],
   "author": "Inesh, Saksham, Inesh",
   "license": "MIT",
   "dependencies": {
     "express": "^4.19.2",
-    "uuid": "^14.0.1"
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
-    "jest": "^30.4.2",
-    "supertest": "^7.2.2"
+    "jest": "^29.7.0",
+    "supertest": "^6.3.4"
   }
 }
