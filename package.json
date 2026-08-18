@@ -9,12 +9,19 @@
     "test": "jest --coverage",
     "test:watch": "jest --watch"
   },
-  "keywords": ["task-manager", "rest-api", "express", "nodejs"],
+  "keywords": [
+    "task-manager",
+    "rest-api",
+    "express",
+    "nodejs"
+  ],
   "author": "Inesh, Saksham, Inesh",
   "license": "MIT",
   "dependencies": {
     "express": "^4.19.2",
-    "uuid": "^9.0.1"
+    "swagger-ui-express": "^5.0.1",
+    "uuid": "^9.0.1",
+    "yamljs": "^0.3.0"
   },
   "devDependencies": {
     "jest": "^29.7.0",
