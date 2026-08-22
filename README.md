@@ -1,42 +1,38 @@
-# Task Manager API
+# Team Task Manager API
 
-A small, beginner-friendly REST API for managing tasks, built for a university lab assessment. It demonstrates Git/GitHub workflow, Docker containerization, CI with automated testing, clean code structure, Swagger API documentation, and test coverage reporting.
+A small, beginner-friendly REST API for managing tasks, built for a university lab
+assessment. It demonstrates Git/GitHub workflow, Docker containerization, CI with
+automated testing, clean code structure, Swagger API documentation, and test coverage
+reporting.
 
-## Tech Stack
+## Tech stack
 
-* Node.js + Express.js
-* JSON file for storage (no database, by design)
-* Jest + Supertest for automated testing
-* Swagger / OpenAPI for documentation
-* Docker for containerization
-* GitHub Actions for CI
+- Node.js + Express.js
+- JSON file for storage (no database, by design)
+- Jest + Supertest for automated testing
+- Swagger / OpenAPI for documentation
+- Docker for containerization
+- GitHub Actions for CI
 
-## Project Structure
+## Project structure
 
-```text
-Task-Manager-API/
+```
+team-task-manager-api/
 ├── src/
-│   ├── app.js                       # Express app setup
-│   ├── server.js                    # Entry point, starts the server
-│   ├── routes/
-│   │   └── taskRoutes.js            # Route definitions
-│   ├── controllers/
-│   │   └── taskController.js        # Request/response handling
-│   ├── services/
-│   │   └── taskService.js           # Business logic + JSON file storage
+│   ├── app.js                  # Express app setup
+│   ├── server.js                # Entry point, starts the server
+│   ├── routes/taskRoutes.js     # Route definitions
+│   ├── controllers/taskController.js  # Request/response handling
+│   ├── services/taskService.js  # Business logic + JSON file storage
 │   ├── middleware/
-│   │   ├── validateTask.js          # Input validation
-│   │   └── errorHandler.js          # Centralized error handling
-│   ├── data/
-│   │   └── tasks.json               # Data storage file
+│   │   ├── validateTask.js      # Input validation
+│   │   └── errorHandler.js      # Centralized error handling
+│   ├── data/tasks.json          # Data storage file
 │   └── swagger/
-│       ├── swagger.yaml             # OpenAPI specification
-│       └── swagger.js               # Loads the spec for swagger-ui-express
-├── tests/
-│   └── task.test.js                 # Jest + Supertest test suite
-├── .github/
-│   └── workflows/
-│       └── ci.yml                   # GitHub Actions CI pipeline
+│       ├── swagger.yaml         # OpenAPI spec
+│       └── swagger.js           # Loads the spec for swagger-ui-express
+├── tests/task.test.js           # Jest + Supertest test suite
+├── .github/workflows/ci.yml     # GitHub Actions CI pipeline
 ├── Dockerfile
 ├── .dockerignore
 ├── .gitignore
@@ -47,35 +43,29 @@ Task-Manager-API/
 ## Setup
 
 ```bash
-git clone https://github.com/inesh-dev/Task-Manager-API.git
-cd Task-Manager-API
+git clone https://github.com/<org-or-username>/team-task-manager-api.git
+cd team-task-manager-api
 npm install
 ```
 
-## Running the App
+## Running the app
 
 ```bash
 npm start
 ```
+The API runs at `http://localhost:3000`. Swagger docs at `http://localhost:3000/api-docs`.
 
-The API runs at http://localhost:3000.
+## API endpoints
 
-Swagger documentation is available at:
+| Method | Endpoint             | Description          | Success | Errors |
+|--------|-----------------------|-----------------------|---------|--------|
+| GET    | `/api/tasks`           | List all tasks        | 200     | —      |
+| GET    | `/api/tasks/:id`       | Get one task           | 200     | 404    |
+| POST   | `/api/tasks`           | Create a task          | 201     | 400    |
+| PUT    | `/api/tasks/:id`       | Update a task          | 200     | 400, 404 |
+| DELETE | `/api/tasks/:id`       | Delete a task          | 204     | 404    |
 
-http://localhost:3000/api-docs
-
-## API Endpoints
-
-| Method   | Endpoint         | Description    | Success | Errors       |
-| -------- | ---------------- | -------------- | ------- | ------------ |
-| `GET`    | `/api/tasks`     | List all tasks | `200`   | —            |
-| `GET`    | `/api/tasks/:id` | Get one task   | `200`   | `404`        |
-| `POST`   | `/api/tasks`     | Create a task  | `201`   | `400`        |
-| `PUT`    | `/api/tasks/:id` | Update a task  | `200`   | `400`, `404` |
-| `DELETE` | `/api/tasks/:id` | Delete a task  | `204`   | `404`        |
-
-## Task Object
-
+**Task object:**
 ```json
 {
   "id": "uuid",
@@ -86,57 +76,40 @@ http://localhost:3000/api-docs
 }
 ```
 
-Full interactive documentation is available at `/api-docs` through Swagger UI, generated from `src/swagger/swagger.yaml`.
+Full interactive documentation: **`/api-docs`** (Swagger UI), generated from
+`src/swagger/swagger.yaml`.
 
 ## Testing
 
 ```bash
 npm test
 ```
-
-This runs the full Jest + Supertest test suite and prints a coverage table.
-
-An HTML coverage report is generated at:
-
-```text
-coverage/lcov-report/index.html
-```
-
-Open this file in a browser for a line-by-line coverage view.
+Runs the full Jest + Supertest suite and prints a coverage table. An HTML coverage
+report is generated at `coverage/lcov-report/index.html` — open it in a browser for a
+line-by-line view.
 
 ## Docker
 
-### Build the Image
-
+Build the image:
 ```bash
-docker build -t Task-Manager-API .
+docker build -t team-task-manager-api .
 ```
 
-### Run the Container
-
+Run the container:
 ```bash
-docker run -p 3000:3000 Task-Manager-API
+docker run -p 3000:3000 team-task-manager-api
 ```
-
-The API is then available at:
-
-http://localhost:3000
+The API is now available at `http://localhost:3000` on your host machine.
 
 ## Continuous Integration
 
-Every push and pull request to `main` or `develop` triggers `.github/workflows/ci.yml`.
+Every push and every pull request to `main` or `develop` triggers `.github/workflows/ci.yml`,
+which installs dependencies with `npm ci` and runs `npm test`. The coverage report is
+uploaded as a downloadable workflow artifact. Check the **Actions** tab on GitHub to see
+run history.
 
-The CI pipeline:
+## Team contributions
 
-1. Installs dependencies using `npm ci`.
-2. Runs the Jest + Supertest test suite.
-3. Generates a test coverage report.
-4. Uploads the coverage report as a downloadable workflow artifact.
-
-Check the **Actions** tab on GitHub to view workflow runs and their results.
-
-## Team Contributions
-
-* **Inesh Pokhrel:** Project structure, task CRUD API, input validation, and error handling.
-* **Saksham Pokhrel:** Automated tests, coverage configuration, and Swagger/OpenAPI documentation.
-* **Sangam Parajuli:** Docker, GitHub Actions CI, README, clean-code pass, and integration.
+- **Inesh (Member 1):** project structure, task CRUD API, input validation, error handling.
+- **Saksham (Member 2):** automated tests, coverage configuration, Swagger/OpenAPI docs.
+- **Inesh (Member 3):** Docker, GitHub Actions CI, README, clean-code pass, integration.

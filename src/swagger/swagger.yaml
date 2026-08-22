@@ -1,0 +1,144 @@
+openapi: 3.0.0
+info:
+  title: Team Task Manager API
+  description: A simple REST API for managing team tasks, built for a university lab assessment.
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000
+    description: Local development server
+tags:
+  - name: Tasks
+    description: Task management endpoints
+paths:
+  /api/tasks:
+    get:
+      tags: [Tasks]
+      summary: Get all tasks
+      responses:
+        '200':
+          description: List of all tasks
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Task'
+    post:
+      tags: [Tasks]
+      summary: Create a new task
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskInput'
+      responses:
+        '201':
+          description: Task created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+        '400':
+          description: Validation error (missing or invalid title)
+  /api/tasks/{id}:
+    get:
+      tags: [Tasks]
+      summary: Get a task by ID
+      parameters:
+        - $ref: '#/components/parameters/TaskId'
+      responses:
+        '200':
+          description: Task found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+        '404':
+          description: Task not found
+    put:
+      tags: [Tasks]
+      summary: Update a task by ID
+      parameters:
+        - $ref: '#/components/parameters/TaskId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskUpdate'
+      responses:
+        '200':
+          description: Task updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+        '400':
+          description: Validation error
+        '404':
+          description: Task not found
+    delete:
+      tags: [Tasks]
+      summary: Delete a task by ID
+      parameters:
+        - $ref: '#/components/parameters/TaskId'
+      responses:
+        '204':
+          description: Task deleted successfully (no content)
+        '404':
+          description: Task not found
+components:
+  parameters:
+    TaskId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The unique ID of the task
+  schemas:
+    Task:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+        title:
+          type: string
+          example: "Finish lab report"
+        description:
+          type: string
+          example: "Write the final section of the CI/CD lab report"
+        completed:
+          type: boolean
+          example: false
+        createdAt:
+          type: string
+          format: date-time
+          example: "2026-08-13T10:15:30.000Z"
+    TaskInput:
+      type: object
+      required: [title]
+      properties:
+        title:
+          type: string
+          example: "Finish lab report"
+        description:
+          type: string
+          example: "Write the final section of the CI/CD lab report"
+        completed:
+          type: boolean
+          example: false
+    TaskUpdate:
+      type: object
+      properties:
+        title:
+          type: string
+          example: "Updated title"
+        description:
+          type: string
+          example: "Updated description"
+        completed:
+          type: boolean
+          example: true
