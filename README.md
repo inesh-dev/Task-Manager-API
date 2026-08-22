@@ -17,7 +17,7 @@ reporting.
 ## Project structure
 
 ```
-team-task-manager-api/
+Task-Manager-API/
 ├── src/
 │   ├── app.js                  # Express app setup
 │   ├── server.js                # Entry point, starts the server
@@ -43,8 +43,8 @@ team-task-manager-api/
 ## Setup
 
 ```bash
-git clone https://github.com/<org-or-username>/team-task-manager-api.git
-cd team-task-manager-api
+git clone https://github.com/inesh-dev/Task-Manager-API.git
+cd Task-Manager-API
 npm install
 ```
 
@@ -92,12 +92,12 @@ line-by-line view.
 
 Build the image:
 ```bash
-docker build -t team-task-manager-api .
+docker build -t Task-Manager-API .
 ```
 
 Run the container:
 ```bash
-docker run -p 3000:3000 team-task-manager-api
+docker run -p 3000:3000 Task-Manager-API
 ```
 The API is now available at `http://localhost:3000` on your host machine.
 
@@ -110,6 +110,6 @@ run history.
 
 ## Team contributions
 
-- **Inesh (Member 1):** project structure, task CRUD API, input validation, error handling.
-- **Saksham (Member 2):** automated tests, coverage configuration, Swagger/OpenAPI docs.
-- **Inesh (Member 3):** Docker, GitHub Actions CI, README, clean-code pass, integration.
+- **Inesh Pokhrel:** project structure, task CRUD API, input validation, error handling.
+- **Saksham Pokhrel:** automated tests, coverage configuration, Swagger/OpenAPI docs.
+- **Sangam Parajuli:** Docker, GitHub Actions CI, README, clean-code pass, integration.
